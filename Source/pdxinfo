@@ -1,0 +1,10 @@
+name=Otter versus Raccoons
+author=Milan Lumumba
+description=Brave otter in an infinite battle with raccoons!!!
+bundleID=com.lumumba.otters
+version=0.17
+buildNumber=019
+-- imagePath=path/to/launcher/assets
+imagePath=images
+launchSoundPath=path/to/launch/sound/file
+contentWarning=This game contains realistic otters and raccoons.
