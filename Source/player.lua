@@ -1,5 +1,6 @@
 import "bullet"
 import "ammunitionDisplay"
+import "enemy"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -33,6 +34,9 @@ function Player:update()
         end        
     end    
 
+    -- Check for collision with enemies
+    self:checkCollisionWithEnemies()
+
     if pd.buttonJustPressed(pd.kButtonA) then
         if checkAmmunition() > 0 then
          Bullet(self.x, self.y, 5)
@@ -44,12 +48,22 @@ function Player:update()
             Bullet(self.x, self.y, 15)
         end
     end
-
-   -- if pd.crankJust  
-
-    -- if pd.buttonJustPressed(pd.kButtonB) then
-    --    incrementAmmunition()
-    -- end
+end
 
 
+function Player:checkCollisionWithEnemies()
+    local overlappingSprites = self:overlappingSprites()
+    for _, sprite in ipairs(overlappingSprites) do
+        if sprite:isa(Enemy) then
+            endGame()
+            break
+        end
+    end
+end
+
+
+function endGame()
+    print("Game Over")
+    -- Add logic to handle the end of the game, such as stopping the game loop, showing a game over screen, etc.
+    pd.stop()
 end
