@@ -14,10 +14,9 @@ function Bullet:init(x, y, speed)
             gfx.drawCircleAtPoint(bulletSize, bulletSize, bulletSize)
         gfx.popContext()
         self:setImage(bulletImage)
-
-        self:setCollideRect(0, 0, self:getSize())
         self.speed = speed
         self:moveTo(x, y)
+        self:setCollideRect(0, 0, self:getSize()) -- Define collision rectangle
         self:add()
 end
 
@@ -31,16 +30,22 @@ function Bullet:update()
                 incrementScore()
                 decrementAmmunition()
                 setShakeAmount(5)
+                self:remove()
+                return
               elseif collidedObject:isa(Ammunition) then
                 collidedObject:remove()
                 incrementAmmunition()
                 decrementAmmunition()
-                setShakeAmount(5) 
+                setShakeAmount(5)
+                self:remove()
+                return
             end
         end
-        self:remove()
+
     elseif actualX > 400 then
         self:remove()    
         decrementAmmunition()
     end
+
 end
+

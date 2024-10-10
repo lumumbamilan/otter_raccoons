@@ -19,7 +19,7 @@ local snd <const> = pd.sound
 
 local screenShakeSprite = ScreenShake()
 function preloadSounds()
-    musicPlayer = snd.fileplayer.new("sounds/music.mp3")
+--    musicPlayer = snd.fileplayer.new("sounds/music.mp3")
     if not musicPlayer then
         print("Failed to load music file")
     end
@@ -36,7 +36,6 @@ end
 preloadSounds()
 
 function resetGame()
- --  setHighestScore()
     checkAndUpdateHighestScore()
     resetScore()
     resetAmmunition()
@@ -53,9 +52,6 @@ function setShakeAmount(amount)
     screenShakeSprite:setShakeAmount(amount)
 end
 
--- function scoreGame()
---    scoreGame()
--- end
 
 createScoreDisplay()
 createAmmunitionDisplay()
@@ -63,7 +59,7 @@ createHighestScoreDisplay()
 Player(30,120)
 startSpawner()
 startSpawnerAmmunition()
-musicPlayer:play()
+-- musicPlayer:play()
 
 function pd.update()
     gfx.sprite.update()
